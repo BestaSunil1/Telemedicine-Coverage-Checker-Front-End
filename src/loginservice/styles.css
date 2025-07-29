@@ -1,0 +1,123 @@
+/* body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f1eeeb;
+    color: #354B5E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+} */
+
+:root {
+  --ash-gray: #cad2c5ff;
+  --cambridge-blue: #84a98cff;
+  --hookers-green: #52796fff;
+  --dark-slate-gray: #354f52ff;
+  --charcoal: #2f3e46ff;
+}
+
+.page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    background-image: url('./background1.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #cad2c5ff;
+}
+
+.form-container {
+    background-color: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.form-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--dark-slate-gray);
+    margin-bottom: 20px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    color: var(--dark-slate-gray);
+    margin-bottom: 4px;
+}
+
+.form-input, .form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--dark-slate-gray);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box;
+    color: var(--charcoal);
+    background-color: white;
+}
+
+.form-input::placeholder {
+    color: var(--ash-gray);
+}
+
+.form-input:focus, .form-select:focus {
+    border-color: var(--cambridge-blue);
+    box-shadow: 0 0 4px var(--dark-slate-gray);
+}
+
+.form-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--hookers-green);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    background-color: var(--dark-slate-gray);
+}
+
+.form-footer {
+    font-size: 0.9rem;
+    margin-top: 16px;
+    color: var(--dark-slate-gray);
+}
+
+.form-link {
+    color: var(--cambridge-blue);
+    text-decoration: none;
+}
+
+.form-link:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,119 @@
+.zoom-outer-box {
+  background: #fafbfc;
+  box-shadow: 0 1px 8px #d1d7e6;
+  padding: 2.5rem 1rem 2rem 1rem;
+  max-width: 95%;
+  margin: 2rem auto;
+  border-radius: 16px;
+}
+
+.zoom-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #20274d;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.zoom-subtitle {
+  text-align: center;
+  color: #3a4158;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.zoom-meeting-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.zoom-form-row {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.zoom-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.zoom-label {
+  font-size: 0.98rem;
+  color: #212852;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.zoom-input {
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #cad3e2;
+  min-width: 260px;
+  outline: none;
+  background: #fff;
+}
+
+.zoom-action-btn {
+  padding: 0.80rem 1.5rem;
+  font-size: 1.1rem;
+  background: #1e4db7;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  transition: background 0.2s;
+}
+
+.zoom-action-btn:hover {
+  background: #15408c;
+}
+
+.zoom-meeting-ready {
+  text-align: center;
+}
+
+.zoom-success-msg {
+  font-size: 1.15rem;
+  color: #39803c;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.zoom-join-link {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  background: #1e4db7;
+  color: #fff;
+  border-radius: 7px;
+  text-decoration: none;
+  margin-bottom: 0.7rem;
+  font-weight: 600;
+}
+
+.zoom-join-link:hover {
+  background: #15408c;
+}
+
+.zoom-clear-btn {
+  display: block;
+  margin: 1rem auto 0 auto;
+  background: #fff;
+  color: #1e4db7;
+  border: 1px solid #1e4db7;
+  border-radius: 7px;
+  padding: 0.65rem 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.zoom-clear-btn:hover {
+  background: #e9f0fc;
+  color: #174084;
+}

@@ -1,0 +1,110 @@
+
+/* Header */
+.header {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  padding: 14px 24px;
+  background-color: #FFFFFF;         /* White */
+  border: 2px solid #ffffff;        /* White border */
+  margin: 10px;
+  border-radius: 15px;;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Black shadow */
+}
+
+
+.logoBtn {
+  font-weight: bold;
+  font-size: 25px;
+  border: none;
+  cursor: pointer;
+  color: #1A1A1A;
+  font-weight: bold;                  /* Emphasis - Black/Charcoal */
+}
+
+.navBtn {
+  border: 1px solid #FFFFFF;           /* White */
+  border-radius: 10px;
+  padding: 8px 18px;
+  background-color: transparent;
+  color: #100838;                     /* Emphasis */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.profileBtn {
+  margin-left: auto;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background-color: #FF9800;           /* Highlight - Orange */
+  color: #FFFFFF;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.navBtnActive {
+  background-color: orange;
+  color: #091745;                     /* Emphasis */
+  border: 1px solid #1A1A1A;          /* Emphasis */
+}
+
+.navBtn:hover {
+  background-color: orange;
+  color: rgb(0, 0, 0);                     /* Primary - Emerald */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logoBtn:hover {
+  opacity: 0.85;
+}
+
+.profileBtn:hover {
+  background-color: #ffb441;  /* Slightly lighter orange for hover */
+  transform: scale(1.05);
+}
+
+/* Additional eSanjeevani-style elements */
+.consultBtn {
+  background-color: #1A237E ;           /* Secondary - Dark Blue */
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.consultBtn:hover {
+  background-color: #0D47A1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
+}
+
+.card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E8F5E8;           /* Light Green */
+}
+
+.statsContainer {
+  background: linear-gradient(135deg, #E8F5E8 0%, #C8E6C9 100%);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.textMuted {
+  color: #6B7280;                       /* Neutral Text - Medium Gray */
+}
+
+.textPrimary {
+  color: #10b981;                       /* Primary - Emerald */
+}
