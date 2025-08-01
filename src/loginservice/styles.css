@@ -101,6 +101,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    
 }
 
 .form-button:hover {
@@ -108,14 +109,18 @@
 }
 
 .form-footer {
+    display: flex;
     font-size: 0.9rem;
     margin-top: 16px;
+    gap: 5rem;
     color: var(--dark-slate-gray);
+    justify-content: center;
 }
 
 .form-link {
     color: var(--cambridge-blue);
     text-decoration: none;
+    color: rgb(50, 50, 180);
 }
 
 .form-link:hover {

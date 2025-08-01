@@ -22,7 +22,7 @@ const InsuranceEligibilityChecker = () => {
     setEligibilityData(null);
 
     try {
-      const response = await fetch('http://localhost:9096/api/eligibility/check', {
+      const response = await fetch('http://localhost:9090/api/eligibility/check', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

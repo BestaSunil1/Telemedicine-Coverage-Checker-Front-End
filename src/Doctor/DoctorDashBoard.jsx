@@ -57,7 +57,7 @@ const DoctorDashboard = ({ onNavigate }) => {
   const notifPanelRef = useRef(null);
   const userId = "6883134584b21b57f6f740da";
   useEffect(() => {
-    fetch(`http://localhost:9093/api/appointments/getNotifications/${userId}`)
+    fetch(`http://localhost:9090/api/appointments/getNotifications/${userId}`)
       .then(res => res.json())
       .then(data => {
         setNotifications(Array.isArray(data) ? data : []);

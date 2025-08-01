@@ -26,7 +26,7 @@ const PatientDashboard = ({ onNavigate }) => {
 
   // Fetch notifications
   useEffect(() => {
-    fetch(`http://localhost:9093/api/appointments/getNotifications/${userId}`)
+    fetch(`http://localhost:9090/api/appointments/getNotifications/${userId}`)
       .then(res => res.json())
       .then(data => {
         setNotifications(Array.isArray(data) ? data : []);

@@ -85,8 +85,8 @@ function Registration() {
                     className='form-select'
                     > 
                     <option value="disabled" >Select your role</option>
-                    <option value="CUSTOMER">Customer</option>
-                    <option value="ADMIN">Admin</option>
+                    <option value="CUSTOMER">PATIENT</option>
+                    <option value="ADMIN">DOCTOR</option>
                     </select>
                 </div>
                 <button type='submit' className='form-button'>Sign Up</button>
