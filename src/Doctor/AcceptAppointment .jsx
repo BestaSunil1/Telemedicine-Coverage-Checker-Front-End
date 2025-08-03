@@ -18,7 +18,8 @@ const AcceptAppointment = () => {
   const [processing, setProcessing] = useState(false);
 
   // Replace this with the actual doctor ID from your authentication context
-  const doctorId = "68876155a2051d108d3eeff1"; // You should get this from your auth context/localStorage
+  // const doctorId = "68876155a2051d108d3eeff1"; // You should get this from your auth context/localStorage
+  const doctorId = localStorage.getItem('doctorId');
 
   const API_BASE_URL = 'http://localhost:9090/api/appointments';
 

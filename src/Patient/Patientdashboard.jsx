@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import './patientdashboard.css';
 
-const PatientDashboard = ({ onNavigate }) => {
+const PatientDashboard = ({ onNavigate, userId }) => {
   const [activeTab] = useState('dashboard');
   const navigate = useNavigate();
 
@@ -22,7 +22,8 @@ const PatientDashboard = ({ onNavigate }) => {
   // Ref for detecting outside clicks
   const notifPanelRef = useRef(null);
 
-  const userId = "customUserId123"; // Replace with dynamic user id
+  // const userId = localStorage.getItem('userId'); // Replace with dynamic user id
+  console.log(userId)
 
   // Fetch notifications
   useEffect(() => {

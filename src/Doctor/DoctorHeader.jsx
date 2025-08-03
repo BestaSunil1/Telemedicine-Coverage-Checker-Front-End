@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import '../Patient/patientheader.css';
 import ZoomMeeting from "../ZoomMeeting";
 import DoctorDashboard from "./DoctorDashBoard";
-import AcceptAppointment from "./AcceptAppointment ";
+import AcceptAppointment from "./AcceptAppointment "
 import ManageSchedules from "./ManageSchedules";
 
 const DoctorHeader = () => {
@@ -11,6 +11,8 @@ const DoctorHeader = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [hoveredLogo, setHoveredLogo] = useState(false);
   const [hoveredProfile, setHoveredProfile] = useState(false);
+  const userId=localStorage.getItem('userId');
+  console.log(userId);
 
   const handleNavigate = (page) => {
     setCurrentPage(page);
@@ -25,9 +27,9 @@ const DoctorHeader = () => {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'home':
-        return <DoctorDashboard onNavigate={handleNavigate}/>;
+        return <DoctorDashboard  onNavigate={handleNavigate}/>;
       case 'accpetappointments':
-        return <AcceptAppointment />;
+        return <AcceptAppointment  onNavigate={handleNavigate}/>;
       case 'manageshedules':
         return <ManageSchedules />
       case 'connectvideo':

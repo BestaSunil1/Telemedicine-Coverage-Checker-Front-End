@@ -33,7 +33,8 @@ const ManageSchedules = () => {
 
   // const doctorId = "688761c1a2051d108d3eeff5";
   //  // You can make this dynamic
-    const doctorId = "68876155a2051d108d3eeff1"
+    // const doctorId = "68876155a2051d108d3eeff1"
+    const doctorId = localStorage.getItem('doctorId');
 
   const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const consultationTypes = [
@@ -104,7 +105,7 @@ const ManageSchedules = () => {
         endTime: endTime,
         type: 'Consultation', // You can determine this based on your data
         patient: appointment.patient.user.username,
-        status: 'booked',
+        status: 'BOOKED',
         appointmentData: appointment
       });
     });

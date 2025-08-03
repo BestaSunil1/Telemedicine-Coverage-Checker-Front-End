@@ -19,6 +19,8 @@ const PatientHeader = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [hoveredLogo, setHoveredLogo] = useState(false);
   const [hoveredProfile, setHoveredProfile] = useState(false);
+  const userId=localStorage.getItem('userId');
+  console.log(userId);
   
 
   const handleNavigate = (page) => {
@@ -34,13 +36,13 @@ const PatientHeader = () => {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'home':
-        return <PatientDashboard onNavigate={handleNavigate}/>;
+        return <PatientDashboard userId={userId} onNavigate={handleNavigate}/>;
       case 'bookappointment':
-        return <BookAppointment onNavigate={handleNavigate}/>;
+        return <BookAppointment userId={userId} onNavigate={handleNavigate}/>;
       case 'prescription':
-        return <Prescription />
+        return <Prescription userId={userId} />
       case 'connectvideo':
-        return <ZoomMeeting />;
+        return <ZoomMeeting userId={userId} />;
       case 'profile':
         // return <Profile />;
       default:

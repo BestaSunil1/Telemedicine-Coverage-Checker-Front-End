@@ -20,7 +20,7 @@ const AVAILABILITIES_PER_PAGE = 3;
 // Replace with your actual Razorpay key
 const RAZORPAY_KEY_ID = 'rzp_test_LqWBBDbgwot5lh'; // Replace with your actual test key
 
-const BookAppointment = () => {
+const BookAppointment = ({ userId, onNavigate }) => {
   const [availabilities, setAvailabilities] = useState([]);
   const [filteredAvailabilities, setFilteredAvailabilities] = useState([]);
   const [selectedAvailability, setSelectedAvailability] = useState(null);
@@ -43,8 +43,34 @@ const BookAppointment = () => {
   const [razorpayLoaded, setRazorpayLoaded] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
   
-  // Mock patient ID - in real app, this would come from authentication
-  const patientId = "68834a1b8c1b9df340ede7d7";
+ async function getPatientIdByUserId(userId) {
+  if (!userId) return null;
+  try {
+    const response = await fetch(`http://localhost:9090/api/patients/user/${userId}`);
+    if (!response.ok) throw new Error('Failed to fetch patient data');
+    const patientData = await response.json();
+
+    // patientId may be in 'id' or '_id' field, depends on your backend
+    const patientId = patientData.id || patientData._id;
+
+    console.log('Patient ID:', patientId);
+    return patientId;
+  } catch (error) {
+    console.error('Error fetching patient:', error);
+    return null;
+  }
+}
+getPatientIdByUserId(userId).then(patientId => {
+  if (patientId) {
+    // Now you have patientId to use or store as needed
+    console.log('Received patientId:', patientId);
+    localStorage.setItem('patientId', patientId);  // optional store
+  }
+});
+  // const patientId = "68834a1b8c1b9df340ede7d7";
+  const patientId = localStorage.getItem('patientId')
+   console.log(patientId);
+  
 
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 

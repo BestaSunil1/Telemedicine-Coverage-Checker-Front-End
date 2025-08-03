@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -12,8 +15,8 @@ import '../Patient/patientdashboard.css';
 const DoctorDashboard = ({ onNavigate }) => {
   const [activeTab] = useState('dashboard');
   const navigate = useNavigate();
- 
 
+  // Doctor statistics (you can replace these with real data as needed)
   const doctorStats = {
     totalPatients: 247,
     todayAppointments: 8,
@@ -21,9 +24,10 @@ const DoctorDashboard = ({ onNavigate }) => {
     pendingConsultations: 3,
     monthlyEarnings: 24500,
     rating: 4.8,
-    totalReviews: 156
+    totalReviews: 156,
   };
 
+  // Today's schedule sample data
   const todaySchedule = [
     {
       id: 1,
@@ -31,7 +35,7 @@ const DoctorDashboard = ({ onNavigate }) => {
       time: '10:30 AM',
       type: 'Video Consultation',
       status: 'upcoming',
-      condition: 'Routine Checkup'
+      condition: 'Routine Checkup',
     },
     {
       id: 2,
@@ -39,7 +43,7 @@ const DoctorDashboard = ({ onNavigate }) => {
       time: '11:15 AM',
       type: 'Follow-up',
       status: 'completed',
-      condition: 'Hypertension'
+      condition: 'Hypertension',
     },
     {
       id: 3,
@@ -47,26 +51,58 @@ const DoctorDashboard = ({ onNavigate }) => {
       time: '2:00 PM',
       type: 'Video Consultation',
       status: 'upcoming',
-      condition: 'Diabetes Management'
-    }
+      condition: 'Diabetes Management',
+    },
   ];
 
+  const [doctor, setDoctor] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [loadingNotifications, setLoadingNotifications] = useState(true);
   const [showNotifications, setShowNotifications] = useState(false);
   const notifPanelRef = useRef(null);
-  const userId = "6883134584b21b57f6f740da";
+
+  const userId = localStorage.getItem('userId');
   useEffect(() => {
-    fetch(`http://localhost:9090/api/appointments/getNotifications/${userId}`)
-      .then(res => res.json())
-      .then(data => {
-        setNotifications(Array.isArray(data) ? data : []);
-        setLoadingNotifications(false);
-      })
-      .catch(() => {
-        setNotifications([]);
-        setLoadingNotifications(false);
-      });
+  if (doctor && doctor.id) {
+    localStorage.setItem("doctorId", doctor.id);
+  }
+}, [doctor]);
+
+  // Fetch doctor data by userId
+  async function fetchDoctorByUserId(userId) {
+    if (!userId) return;
+    try {
+      const response = await fetch(`http://localhost:9090/api/doctors/user/${userId}`);
+      if (!response.ok) throw new Error('Doctor not found');
+      const doctorData = await response.json();
+      setDoctor(doctorData);
+      console.log('Doctor data:', doctorData);
+    } catch (error) {
+      console.error('Failed to fetch doctor:', error);
+      setDoctor(null);
+    }
+  }
+
+  // Fetch notifications by userId
+  async function fetchNotifications(userId) {
+    if (!userId) return;
+    try {
+      const response = await fetch(`http://localhost:9090/api/appointments/getNotifications/${userId}`);
+      if (!response.ok) throw new Error('Failed to fetch notifications');
+      const data = await response.json();
+      setNotifications(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error('Failed to fetch notifications:', error);
+      setNotifications([]);
+    } finally {
+      setLoadingNotifications(false);
+    }
+  }
+
+  // Fetch doctor info and notifications on mount or when userId changes
+  useEffect(() => {
+    fetchDoctorByUserId(userId);
+    fetchNotifications(userId);
   }, [userId]);
 
   // Close notification panel on outside click
@@ -86,8 +122,8 @@ const DoctorDashboard = ({ onNavigate }) => {
     };
   }, [showNotifications]);
 
-  // --- Render notifications dropdown panel ---
-  const renderNotifications = () => ( 
+  // Render notifications panel
+  const renderNotifications = () => (
     <div
       ref={notifPanelRef}
       style={{
@@ -105,7 +141,15 @@ const DoctorDashboard = ({ onNavigate }) => {
         transform: 'translateX(-10%)',
       }}
     >
-      <h3 style={{ margin: '0 0 12px 0', fontWeight: '600', fontSize: '1.1rem', borderBottom: '1px solid #eee', paddingBottom: '6px' }}>
+      <h3
+        style={{
+          margin: '0 0 12px 0',
+          fontWeight: '600',
+          fontSize: '1.1rem',
+          borderBottom: '1px solid #eee',
+          paddingBottom: '6px',
+        }}
+      >
         Notifications
       </h3>
 
@@ -114,7 +158,7 @@ const DoctorDashboard = ({ onNavigate }) => {
       ) : notifications.length === 0 ? (
         <p style={{ textAlign: 'center', color: '#888' }}>No notifications</p>
       ) : (
-        notifications.map(notif => (
+        notifications.map((notif) => (
           <div
             key={notif.id}
             style={{
@@ -124,7 +168,7 @@ const DoctorDashboard = ({ onNavigate }) => {
               borderRadius: '6px',
               marginBottom: '10px',
               cursor: 'default',
-              userSelect: 'none'
+              userSelect: 'none',
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
@@ -133,22 +177,22 @@ const DoctorDashboard = ({ onNavigate }) => {
                 {(notif.notificationType || '').replace(/_/g, ' ').toUpperCase()}
               </div>
               {!notif.read && (
-                <span style={{
-                  marginLeft: 'auto',
-                  backgroundColor: '#22c55e',
-                  color: 'white',
-                  borderRadius: '12px',
-                  padding: '2px 8px',
-                  fontSize: '0.75rem',
-                  fontWeight: '700',
-                }}>
+                <span
+                  style={{
+                    marginLeft: 'auto',
+                    backgroundColor: '#22c55e',
+                    color: 'white',
+                    borderRadius: '12px',
+                    padding: '2px 8px',
+                    fontSize: '0.75rem',
+                    fontWeight: '700',
+                  }}
+                >
                   New
                 </span>
               )}
             </div>
-            <div style={{ fontSize: '0.9rem', color: '#333' }}>
-              {notif.message || '(No message provided)'}
-            </div>
+            <div style={{ fontSize: '0.9rem', color: '#333' }}>{notif.message || '(No message provided)'}</div>
             <div style={{ fontSize: '0.8rem', color: '#64748B', marginTop: '4px' }}>
               {notif.sentAt ? new Date(notif.sentAt).toLocaleString() : ''}
             </div>
@@ -158,8 +202,7 @@ const DoctorDashboard = ({ onNavigate }) => {
     </div>
   );
 
-
-
+  // Earnings chart render as per your layout
   const renderEarningsChart = () => (
     <div className="chart-container">
       <svg className="w-full h-full" viewBox="0 0 400 128" preserveAspectRatio="none">
@@ -173,32 +216,40 @@ const DoctorDashboard = ({ onNavigate }) => {
           d="M0,90 Q50,70 100,65 T200,60 T300,45 T400,50 L400,128 L0,128 Z"
           fill="url(#doctorChartGradient)"
         />
-        <path
-          d="M0,90 Q50,70 100,65 T200,60 T300,45 T400,50"
-          stroke="#3B82F6"
-          strokeWidth="3"
-          fill="none"
-        />
+        <path d="M0,90 Q50,70 100,65 T200,60 T300,45 T400,50" stroke="#3B82F6" strokeWidth="3" fill="none" />
       </svg>
     </div>
   );
 
+  // Main dashboard render function
   const renderDashboard = () => (
     <div>
       <div className="booking-header">
-        <h1 className="header-title">Welcome, Dr. Priya</h1>
-        <p className="header-subtitle">Your medical practice dashboard. Manage patients and consultations efficiently.</p>
-         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'white', padding: '8px 16px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(255, 255, 255, 0.1)' }}>
-            
-          </div> 
+        <h1 className="header-title">Welcome, Dr. {doctor?.user?.username || 'Loading...'}</h1>
+        <p className="header-subtitle">
+          Your medical practice dashboard. Manage patients and consultations efficiently.
+        </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '12px' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: 'white',
+              padding: '8px 16px',
+              borderRadius: '8px',
+              boxShadow: '0 1px 3px rgba(255, 255, 255, 0.1)',
+            }}
+          >
+            {/* You can add quick info or buttons here */}
+          </div>
           <div style={{ position: 'relative' }}>
             <Bell
               className="w-6 h-6"
               style={{ color: '#6B7280', cursor: 'pointer' }}
-              onClick={() => setShowNotifications(prev => !prev)}
+              onClick={() => setShowNotifications((prev) => !prev)}
             />
-            {notifications.filter(notif => !notif.read).length > 0 && (
+            {notifications.filter((notif) => !notif.read).length > 0 && (
               <span
                 style={{
                   position: 'absolute',
@@ -216,7 +267,7 @@ const DoctorDashboard = ({ onNavigate }) => {
                   fontWeight: '700',
                 }}
               >
-                {notifications.filter(notif => !notif.read).length}
+                {notifications.filter((notif) => !notif.read).length}
               </span>
             )}
             {showNotifications && renderNotifications()}
@@ -225,26 +276,17 @@ const DoctorDashboard = ({ onNavigate }) => {
       </div>
 
       <div className="quick-actions-grid">
-        <div className="quick-action-card"
-          style={{cursor:'pointer'}}
-          onClick={() => onNavigate('connectvideo')}
-        >
+        <div className="quick-action-card" style={{ cursor: 'pointer' }} onClick={() => onNavigate('connectvideo')}>
           <Stethoscope className="video" />
           <h3 className="quick-action-title">Start Consultation</h3>
           <p className="quick-action-subtitle">Begin patient consultation</p>
         </div>
-        <div className="quick-action-card"
-          style={{cursor:'pointer'}}
-          onClick={() => onNavigate('manageshedules')}
-        >
+        <div className="quick-action-card" style={{ cursor: 'pointer' }} onClick={() => onNavigate('manageshedules')}>
           <Calendar className="calender" />
           <h3 className="quick-action-title">View Schedule</h3>
           <p className="quick-action-subtitle">Manage your appointments</p>
         </div>
-        <div className="quick-action-card"
-          style={{cursor:'pointer'}}
-          onClick={() => onNavigate('accpetappointments')}
-        >
+        <div className="quick-action-card" style={{ cursor: 'pointer' }} onClick={() => onNavigate('accpetappointments')}>
           <Users className="document" />
           <h3 className="quick-action-title">Appointments</h3>
           <p className="quick-action-subtitle">Access medical histories</p>
@@ -302,7 +344,9 @@ const DoctorDashboard = ({ onNavigate }) => {
                     <div className="activity-content">
                       <h3 className="activity-title">{appointment.patient}</h3>
                       <p className="activity-doctor">{appointment.condition}</p>
-                      <p className="activity-date">{appointment.time} - {appointment.type}</p>
+                      <p className="activity-date">
+                        {appointment.time} - {appointment.type}
+                      </p>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       {appointment.status === 'completed' ? (
@@ -338,11 +382,15 @@ const DoctorDashboard = ({ onNavigate }) => {
                       {notification.type === 'review' && <Star className="activity-icon" />}
                     </div>
                     <div className="activity-content">
-                      <h3 className="activity-title" style={{ fontSize: '14px' }}>{notification.message}</h3>
+                      <h3 className="activity-title" style={{ fontSize: '14px' }}>
+                        {notification.message}
+                      </h3>
                       <p className="activity-date">{notification.time}</p>
                     </div>
                     {notification.urgent && (
-                      <div style={{ width: '8px', height: '8px', background: '#EF4444', borderRadius: '50%' }}></div>
+                      <div
+                        style={{ width: '8px', height: '8px', background: '#EF4444', borderRadius: '50%' }}
+                      ></div>
                     )}
                   </div>
                 ))}
@@ -371,7 +419,8 @@ const DoctorDashboard = ({ onNavigate }) => {
           <div className="health-tips-card">
             <h3 className="health-tips-title">Practice Insights</h3>
             <p className="health-tips-text">
-              You've maintained a 95% patient satisfaction rate this month. Your average consultation time is 18 minutes, which is optimal for thorough care.
+              You've maintained a 95% patient satisfaction rate this month. Your average consultation time is 18
+              minutes, which is optimal for thorough care.
             </p>
           </div>
         </div>
@@ -379,6 +428,7 @@ const DoctorDashboard = ({ onNavigate }) => {
     </div>
   );
 
+  // Patient list rendering (optional; called if you add tabs)
   const renderPatientList = () => (
     <div className="past-consultations-container">
       <h2 className="past-consultations-title">Patient Management</h2>
@@ -389,12 +439,15 @@ const DoctorDashboard = ({ onNavigate }) => {
           </div>
         </div>
         <p className="past-consultations-empty-title">Patient records will appear here</p>
-        <p className="past-consultations-empty-subtitle">View and manage all your patient consultations and medical histories.</p>
+        <p className="past-consultations-empty-subtitle">
+          View and manage all your patient consultations and medical histories.
+        </p>
         <button className="past-consultations-btn">View All Patients</button>
       </div>
     </div>
   );
 
+  // Main component render
   return (
     <div className="doctor-booking-container">
       {activeTab === 'dashboard' && renderDashboard()}

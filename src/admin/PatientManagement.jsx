@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Edit, Trash2, Eye, Search, Filter, X, Save, UserPlus } from 'lucide-react';
 import './doctor.css'; // Reuse your doctor styles for consistency
 
-const API_BASE_URL = 'http://localhost:9094/api/admin';
+const API_BASE_URL = 'http://localhost:9090/api/admin';
 const PAGE_SIZE = 10;
 
 const PatientManagement = () => {
