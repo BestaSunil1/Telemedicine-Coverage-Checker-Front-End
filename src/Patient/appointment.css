@@ -9,8 +9,6 @@
   box-sizing: border-box;
 }
 
-
-
 .logo-btn {
   font-weight: bold;
   font-size: 18px;
@@ -98,7 +96,6 @@
   margin-bottom: 40px;
   margin-top: 40px;
   box-shadow: 0 4px 15px rgba(16,185,129,0.10);
-
 }
 
 .section-title {
@@ -112,14 +109,12 @@
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
-  
 }
 
 .search-input-container {
   position: relative;
   flex: 2;
   min-width: 300px;
-  
 }
 
 .search-icon {
@@ -220,9 +215,7 @@
 }
 
 .doctor-specialty {
-  color: #8b5cf6
-
- !important; /* Emerald */
+  color: #8b5cf6!important; /* Emerald (overridden color?) */
   font-size: 1rem;
   margin-bottom: 10px;
   font-weight: 500;
@@ -311,20 +304,19 @@
 }
 
 .confirm-button {
-  width: 200px;               /* Set a fixed, smaller width */
-  padding: 10px;              /* Reduce padding for smaller button */
-  background-color: #3b82f6;  /* Blue */
+  width: 200px;                /* Fixed width */
+  padding: 10px;               /* Reduced padding */
+  background-color: #3b82f6;   /* Blue */
   color: #FFFFFF;
   border: none;
   border-radius: 10px;
-  font-size: 1rem;            /* Smaller font size */
+  font-size: 1rem;             /* Smaller font */
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  display: block;             /* Makes centering work properly */
-  margin: 40px auto 0 auto;   /* Center the button horizontally */
+  display: block;              /* Centering block */
+  margin: 40px auto 0 auto;    /* Center with margin top */
 }
-
 
 .confirm-button:hover:not(:disabled) {
   background-color: #2563eb; /* Indigo Blue */
@@ -426,6 +418,7 @@
   font-size: 0.9rem;
   font-weight: 500;
   text-align: center;
+  color: black !important;
 }
 
 .time-slot:hover {
@@ -562,6 +555,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 /* Container for the whole availability section */
 .availabilities-section {
   padding: 30px;
@@ -584,6 +578,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 24px;
+  align-items: stretch; /* Ensure all cards stretch to equal height */
 }
 
 /* Individual availability card styling */
@@ -595,6 +590,8 @@
   display: flex;
   flex-direction: column; /* vertical layout */
   justify-content: space-between;
+  min-height: 400px; /* Ensures minimum height for consistent card size */
+  height: 100%; /* Fill available grid row height */
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   cursor: pointer;
 }
@@ -627,6 +624,7 @@
 /* Doctor details */
 .doctor-details {
   flex: 1;
+  min-width: 0;
 }
 
 .doctor-name {
@@ -653,12 +651,11 @@
   border-top: 1px solid #E5E7EB; /* Light gray border */
   padding-top: 15px;
   margin-bottom: 20px;
+  flex: 1 1 auto; /* Take remaining space */
   display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  font-size: 0.95rem;
-  color: #374151; /* Gray-700 */
-  font-weight: 500;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
 }
 
 /* Individual availability info blocks with icon */
@@ -694,7 +691,7 @@
 }
 
 .book-button:hover {
-   background: linear-gradient(to right, #4d607e, #2563eb); /* Darker emerald */
+  background: linear-gradient(to right, #4d607e, #2563eb); /* Darker emerald */
   transform: translateY(-2px);
 }
 
@@ -705,19 +702,15 @@
   transform: none;
 }
 
-
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .availabilities-section {
     padding: 20px;
   }
-
   .availabilities-grid {
     grid-template-columns: 1fr; /* Single column on smaller screens */
     gap: 20px;
   }
-
   .availability-info {
     flex-direction: column;
     gap: 10px;

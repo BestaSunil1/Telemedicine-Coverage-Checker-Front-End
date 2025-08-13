@@ -1,119 +1,655 @@
+/* 
+
+.zoom-meeting-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+
+.zoom-meeting-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.appointment-id {
+  color: #6b7280;
+  margin: 0;
+  font-size: 16px;
+}
+
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  color: #3b82f6;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  font-size: 18px;
+  color: #4b5563;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+.error-container {
+  text-align: center;
+  padding: 32px;
+}
+
+.error-icon {
+  width: 48px;
+  height: 48px;
+  color: #ef4444;
+  margin: 0 auto 16px;
+}
+
+.error-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #dc2626;
+  margin-bottom: 8px;
+}
+
+.error-message {
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.error-retry-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.error-retry-btn:hover {
+  background-color: #2563eb;
+}
+
+
+.config-panel {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.config-title {
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.config-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .config-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.config-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.config-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.config-input,
+.config-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.config-input:focus,
+.config-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.config-refresh-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.config-refresh-btn:hover {
+  background-color: #2563eb;
+}
+
+
+.status-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.status-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-label-text {
+  font-weight: 500;
+  color: #374151;
+  font-size: 16px;
+}
+
+.status-value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-text {
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 16px;
+}
+
+.scheduled-time {
+  font-weight: 500;
+  color: #1f2937;
+  font-size: 16px;
+}
+
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.icon-blue { color: #3b82f6; }
+.icon-green { color: #10b981; }
+.icon-purple { color: #8b5cf6; }
+.icon-indigo { color: #6366f1; }
+.icon-gray { color: #6b7280; }
+
+.status-confirmed { color: #059669; }
+.status-pending { color: #d97706; }
+.status-cancelled { color: #dc2626; }
+
+
+.access-message {
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  border: 1px solid;
+}
+
+.access-granted {
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.access-denied {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+.access-message-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.access-message-icon-granted {
+  color: #059669;
+  margin-top: 2px;
+}
+
+.access-message-icon-denied {
+  color: #dc2626;
+  margin-top: 2px;
+}
+
+.access-message-text {
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.access-message-granted {
+  color: #065f46;
+}
+
+.access-message-denied {
+  color: #991b1b;
+}
+
+
+.join-button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 24px;
+}
+
+.join-button-enabled {
+  background-color: #2563eb;
+  color: white;
+}
+
+.join-button-enabled:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.join-button-disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.current-time {
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 24px;
+  padding: 12px;
+  background-color: #f9fafb;
+  border-radius: 6px;
+}
+
+
+.participants-section {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
+}
+
+.participants-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .participants-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.participant-card {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.participant-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.participant-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.participant-specialization {
+  font-size: 14px;
+  color: #059669;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.participant-contact {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+
+/
+.payment-section {
+  margin-bottom: 24px;
+}
+
+.payment-grid {
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .payment-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.payment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0369a1;
+}
+
+.payment-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e40af;
+}
+
+.payment-verified {
+  background-color: #059669;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+  font-weight: 500;
+}
+
+.demo-controls-title {
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.demo-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.demo-button {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.demo-button:hover {
+  background-color: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+
+.no-appointment {
+  text-align: center;
+  padding: 32px;
+}
+
+.no-appointment-icon {
+  width: 48px;
+  height: 48px;
+  color: #9ca3af;
+  margin: 0 auto 16px;
+}
+
+.no-appointment-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.no-appointment-message {
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .zoom-meeting-container {
+    margin: 16px;
+    padding: 20px;
+  }
+  
+  .status-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .status-value {
+    align-self: flex-end;
+  }
+  
+  .demo-buttons {
+    flex-direction: column;
+  }
+  
+  .demo-button {
+    width: 100%;
+  }
+}
+
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+button:focus,
+input:focus,
+select:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+
+@media (prefers-contrast: high) {
+  .zoom-meeting-container {
+    border: 2px solid #000;
+  }
+  
+  .status-item {
+    border-width: 2px;
+  }
+  
+  .join-button-enabled {
+    border: 2px solid #000;
+  }
+}
+} */
+ /* zoom.css */
+
+body {
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background: #f9fbfd;
+  margin: 0;
+}
+
 .zoom-outer-box {
-  background: #fafbfc;
-  box-shadow: 0 1px 8px #d1d7e6;
-  padding: 2.5rem 1rem 2rem 1rem;
-  max-width: 95%;
-  margin: 2rem auto;
-  border-radius: 16px;
+  background: #fff;
+  max-width: 500px;
+  margin: 40px auto 0 auto;
+  padding: 32px 28px 24px 28px;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
 }
 
 .zoom-title {
   text-align: center;
-  font-size: 2.5rem;
-  color: #20274d;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 2.1rem;
+  color: #19335c;
+  font-weight: bold;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
 }
 
 .zoom-subtitle {
   text-align: center;
-  color: #3a4158;
   font-size: 1rem;
-  margin-bottom: 2rem;
+  color: #4d5768;
+  margin-bottom: 32px;
 }
 
-.zoom-meeting-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.zoom-form-row {
-  width: 100%;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.zoom-form-field {
-  display: flex;
-  flex-direction: column;
-}
-
-.zoom-label {
-  font-size: 0.98rem;
-  color: #212852;
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-}
-
-.zoom-input {
+button {
   font-size: 1rem;
-  padding: 0.7rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #cad3e2;
-  min-width: 260px;
-  outline: none;
-  background: #fff;
-}
-
-.zoom-action-btn {
-  padding: 0.80rem 1.5rem;
-  font-size: 1.1rem;
-  background: #1e4db7;
-  color: #fff;
+  font-family: inherit;
+  padding: 9px 20px;
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
+  border-radius: 5px;
+  background: #2257d2;
+  color: #fff;
+  font-weight: 500;
+  margin-top: 14px;
+  margin-bottom: 4px;
+  margin-right: 8px;
+  box-shadow: 0 1px 4px rgba(34,87,210,0.06);
   cursor: pointer;
-  margin-left: 0.5rem;
   transition: background 0.2s;
 }
 
-.zoom-action-btn:hover {
-  background: #15408c;
+button:disabled {
+  background: #bfc6da;
+  color: #eee;
+  cursor: not-allowed;
 }
 
-.zoom-meeting-ready {
-  text-align: center;
+.error-message {
+  margin: 20px 0 0 0;
+  color: #c02629;
+  background: #ffeaea;
+  border: 1px solid #fcc;
+  border-radius: 5px;
+  padding: 11px;
+  text-align: left;
 }
 
-.zoom-success-msg {
-  font-size: 1.15rem;
-  color: #39803c;
-  font-weight: 600;
-  margin-bottom: 0.6rem;
-}
-
-.zoom-join-link {
-  display: inline-block;
-  padding: 0.7rem 1.4rem;
-  background: #1e4db7;
-  color: #fff;
-  border-radius: 7px;
-  text-decoration: none;
-  margin-bottom: 0.7rem;
-  font-weight: 600;
-}
-
-.zoom-join-link:hover {
-  background: #15408c;
-}
-
-.zoom-clear-btn {
-  display: block;
-  margin: 1rem auto 0 auto;
-  background: #fff;
-  color: #1e4db7;
-  border: 1px solid #1e4db7;
-  border-radius: 7px;
-  padding: 0.65rem 1.1rem;
+.validation-message {
+  margin-top: 12px;
+  color: #1e8322;
   font-weight: 500;
-  cursor: pointer;
-  transition: background .15s, color .15s;
+  background: #e4ffe2;
+  padding: 8px;
+  border-radius: 4px;
 }
-.zoom-clear-btn:hover {
-  background: #e9f0fc;
-  color: #174084;
+
+.appointment-summary {
+  margin-top: 26px;
+  background: #f7faff;
+  padding: 18px 16px 14px 16px;
+  border-radius: 9px;
+  box-shadow: 0 1px 4px rgba(42,109,185,0.08);
+}
+
+.appointment-summary h2 {
+  font-size: 1.28rem;
+  color: #2478c4;
+}
+
+.appointment-summary p {
+  margin: 7px 0;
+  font-size: 1.04rem;
+  color: #183052;
+}
+
+.join-btn {
+  margin-top: 12px;
+  background: #1cb594;
+  color: #fff;
+  border-radius: 5px;
+  padding: 11px 25px;
+  font-size: 1rem;
+  transition: background 0.15s;
+}
+
+.join-btn.disabled,
+button[disabled].join-btn {
+  background: #a3e6d4;
+  color: #f7f7f7;
+}
+
+@media (max-width: 600px) {
+  .zoom-outer-box {
+    padding: 18px 5px 9px 5px;
+  }
+  .appointment-summary {
+    padding: 12px 4px 8px 4px;
+  }
 }

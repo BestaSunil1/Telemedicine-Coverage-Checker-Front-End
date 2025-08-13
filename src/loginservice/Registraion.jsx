@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css'
 import {useNavigate} from 'react'
+import Photo from '../assets/login.jpg';
 function Registration() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ function Registration() {
         e.preventDefault();
         setError(null);
         try {
-            const response = await fetch('http://localhost:9090/api/users/register', {
+            const response = await fetch('http://localhost:9090/api/users/insert', {
                 method: 'post',
                 headers: {
                     'Content-Type' : 'application/json',
@@ -33,7 +34,16 @@ function Registration() {
         }
     };
   return (
-    <div className='page-container'>
+        <div
+      className="page-container"
+      style={{
+        backgroundImage: `url(${Photo})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '100vh',   // ensure background covers viewport
+        width: '100%',
+      }}
+    >
         <div className='form-container'>
             <h1 className='form-title'>Register</h1>
             {error && <p className='error-message'>{error}</p>}
@@ -85,8 +95,8 @@ function Registration() {
                     className='form-select'
                     > 
                     <option value="disabled" >Select your role</option>
-                    <option value="CUSTOMER">PATIENT</option>
-                    <option value="ADMIN">DOCTOR</option>
+                    <option value="PATIENT">PATIENT</option>
+                    <option value="DOCTOR">DOCTOR</option>
                     </select>
                 </div>
                 <button type='submit' className='form-button'>Sign Up</button>

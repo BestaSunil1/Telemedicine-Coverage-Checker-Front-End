@@ -6,6 +6,7 @@ import PatientHeader from "./Patient/PatientHeader";
 import DoctorHeader from "./Doctor/DoctorHeader";
 import AdminHeader from "./admin/AdminHeader";
 import HealthCare from "./HealthCare"
+import ResetPasswordPage from "./RestPassword";
 
 const AppRoutes = () =>{
     return(
@@ -16,6 +17,7 @@ const AppRoutes = () =>{
             <Route path="/patient" element={<PatientHeader />}/>
             <Route path="/doctor" element={<DoctorHeader />} />
             <Route path="/admin" element={<AdminHeader />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
             
         </Routes>
     );

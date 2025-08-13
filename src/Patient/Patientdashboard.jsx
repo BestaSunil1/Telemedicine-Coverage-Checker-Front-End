@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +14,6 @@ const PatientDashboard = ({ onNavigate, userId }) => {
   const [activeTab] = useState('dashboard');
   const navigate = useNavigate();
 
-
   // Notifications state
   const [notifications, setNotifications] = useState([]);
   const [loadingNotifications, setLoadingNotifications] = useState(true);
@@ -22,11 +22,12 @@ const PatientDashboard = ({ onNavigate, userId }) => {
   // Ref for detecting outside clicks
   const notifPanelRef = useRef(null);
 
-  // const userId = localStorage.getItem('userId'); // Replace with dynamic user id
-  console.log(userId)
+  console.log(userId);
 
   // Fetch notifications
   useEffect(() => {
+    if (!userId) return; // safety check
+
     fetch(`http://localhost:9090/api/appointments/getNotifications/${userId}`)
       .then(res => res.json())
       .then(data => {
@@ -56,6 +57,33 @@ const PatientDashboard = ({ onNavigate, userId }) => {
     };
   }, [showNotifications]);
 
+  // Handler to mark notification as read on click
+  const handleNotificationClick = async (notifId, isRead) => {
+    if (isRead) {
+      // Already read, no need to update
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:9090/api/appointments/${notifId}/read?read=true`, {
+        method: 'PUT',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update notification.');
+      }
+
+      // Update local notifications state immediately
+      setNotifications((prevNotifications) =>
+        prevNotifications.map((notif) =>
+          notif.id === notifId ? { ...notif, read: true } : notif
+        )
+      );
+    } catch (error) {
+      console.error('Error updating notification read status:', error);
+    }
+  };
+
   // --- Render notifications dropdown panel ---
   const renderNotifications = () => (
     <div
@@ -75,7 +103,13 @@ const PatientDashboard = ({ onNavigate, userId }) => {
         transform: 'translateX(-10%)',
       }}
     >
-      <h3 style={{ margin: '0 0 12px 0', fontWeight: '600', fontSize: '1.1rem', borderBottom: '1px solid #eee', paddingBottom: '6px' }}>
+      <h3 style={{
+        margin: '0 0 12px 0',
+        fontWeight: '600',
+        fontSize: '1.1rem',
+        borderBottom: '1px solid #eee',
+        paddingBottom: '6px'
+      }}>
         Notifications
       </h3>
 
@@ -93,9 +127,10 @@ const PatientDashboard = ({ onNavigate, userId }) => {
               padding: '10px 12px',
               borderRadius: '6px',
               marginBottom: '10px',
-              cursor: 'default',
+              cursor: 'pointer',
               userSelect: 'none'
             }}
+            onClick={() => handleNotificationClick(notif.id, notif.read)}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
               <Bell size={16} color={notif.read ? '#64748B' : '#16A34A'} />
@@ -222,7 +257,7 @@ const PatientDashboard = ({ onNavigate, userId }) => {
       </div>
 
       <div className="quick-actions-grid">
- 
+
         <div
           className="quick-action-card"
           style={{ cursor: 'pointer' }}
@@ -235,27 +270,27 @@ const PatientDashboard = ({ onNavigate, userId }) => {
 
         <div
           className="quick-action-card"
-          style={{ cursor: 'pointer'}}
+          style={{ cursor: 'pointer' }}
           onClick={() => onNavigate('bookappointment')}
         >
           <Calendar className="calender" />
           <h3 className="quick-action-title">Book Appointment</h3>
           <p className="quick-action-subtitle">Schedule new consultation</p>
         </div>
-        <div 
+        <div
           className="quick-action-card"
-          style={{cursor: 'pointer'}}
+          style={{ cursor: 'pointer' }}
           onClick={() => onNavigate('prescription')}
         >
           <FileText className="document" />
           <h3 className="quick-action-title">Medical Records</h3>
           <p className="quick-action-subtitle">View your health data</p>
         </div>
-        <div className="quick-action-card">
+        {/* <div className="quick-action-card">
           <Heart className="heart" />
           <h3 className="quick-action-title">Health Tracker</h3>
           <p className="quick-action-subtitle">Monitor vital signs</p>
-        </div>
+        </div> */}
       </div>
 
       <div className="main-grid">
@@ -286,7 +321,7 @@ const PatientDashboard = ({ onNavigate, userId }) => {
             {renderConsultationChart()}
           </div>
 
-          <div className="card">
+          {/* <div className="card">
             <h2 className="card-title">Recent Activity</h2>
             {recentActivity.length === 0 ? (
               <div className="empty-state">
@@ -311,7 +346,7 @@ const PatientDashboard = ({ onNavigate, userId }) => {
                 ))}
               </div>
             )}
-          </div>
+          </div> */}
         </div>
 
         <div className="right-column">
@@ -339,8 +374,6 @@ const PatientDashboard = ({ onNavigate, userId }) => {
               </div>
             )}
           </div>
-
-          {/* The notifications panel is now toggled by bell icon, so no need to render here. */}
 
           <div className="emergency-card">
             <h3 className="emergency-title">Emergency Contact</h3>

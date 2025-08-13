@@ -23,7 +23,7 @@
 //         body: JSON.stringify({ email, password }),
 //       });
 //       const data = await response.json();
-     
+
 //       if (response.ok) {
 //         console.log('User logged in successfully:', data);
 //         if (data.role === 'PATIENT') {
@@ -132,6 +132,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
+import Photo from '../assets/login.jpg';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -204,7 +205,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="page-container">
+    <div
+      className="page-container"
+      style={{
+        backgroundImage: `url(${Photo})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '100vh',   // ensure background covers viewport
+        width: '100%',
+      }}
+    >
       <div className="form-container">
         <h1 className="form-title">Login</h1>
         {error && <p className="error-message">{error}</p>}

@@ -243,12 +243,12 @@ const AcceptAppointment = () => {
       </div>
 
       <div className="search-section">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        {/* <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
           <h2 className="section-title">Pending Requests ({pendingAppointments.length})</h2>
           <button className="consult-btn" onClick={fetchPendingAppointments} disabled={loading}>
             Refresh
           </button>
-        </div>
+        </div> */}
         
         {pendingAppointments.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '60px 20px' }}>
@@ -279,9 +279,9 @@ const AcceptAppointment = () => {
                           <Phone className="w-4 h-4" />
                           <span>Phone Number: {appointment.patient?.contactNumber || 'N/A'}</span>
                         </div>
-                        <span className="experience"><b>Email: </b>
+                        {/* <span className="experience"><b>Email: </b>
                           {appointment.patient?.user?.email || 'No email'}
-                        </span>
+                        </span> */}
                       </div>
                     </div>
                     <div 
@@ -292,7 +292,8 @@ const AcceptAppointment = () => {
                         padding: '4px 8px',
                         borderRadius: '6px',
                         fontSize: '12px',
-                        fontWeight: '600'
+                        fontWeight: '600',
+                        margin: '25px'
                       }}
                     >
                       {appointment.status || 'PENDING'}

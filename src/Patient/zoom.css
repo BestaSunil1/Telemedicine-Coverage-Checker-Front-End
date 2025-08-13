@@ -1,0 +1,86 @@
+.appointments-container {
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.appointments-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.appointment-card {
+  border: 1px solid #ccc;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+  background-color: #fafafa;
+}
+
+.appointment-card p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #34495e;
+}
+
+.appointment-card b {
+  color: #34495e;
+}
+
+.button-primary {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-primary:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.button-primary:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+.join-container {
+  max-width: 400px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.join-container a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #27ae60;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.join-container a:hover {
+  background-color: #1e8449;
+}
+
+.join-container button {
+  margin-top: 16px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.join-container button:hover {
+  background-color: #c0392b;
+}

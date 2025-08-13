@@ -1,338 +1,319 @@
-/* Container and card */
-.checker-container {
-  max-width: 72rem; /* 4xl */
-  margin: 0 auto;
-  padding: 1.5rem; /* 6 */
-  background: linear-gradient(to bottom right, #ebf8ff, #e0e7ff);
-  min-height: 100vh;
-
-}
-
-.checker-card {
+/* Insurance Eligibility Checker Styles */
+.insurance-eligibility-container {
   background: #F3F4F6;
-  border-radius: 1rem; /* rounded-2xl */
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Header */
-.checker-header {
-  background: #F3F4F6; /* from-blue-600 to-indigo-600 */
-  padding: 1rem 1rem;
-  border-radius: 1rem;
-  /* border: 1px solid black; */
-}
-
-.checker-title {
-  font-size: 1.25rem; 
-  font-weight: 700;
-  color: rgb(20, 23, 24);
+/* Centered header */
+.insurance-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin: 0;
-  justify-content: center;
+  justify-content: center;     /* <------ Added to center horizontally */
+  margin-bottom: 16px;
+  color: green;
 }
 
-/* .checker-subtitle {
-  color: #bfdbfe; 
-  margin-top: 0.5rem;
+.insurance-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a202c;
+  margin-left: 8px;
+  color: green;
+}
+
+.eligibility-records {
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: #f0fff4;
+  border: 1px solid #9ae6b4;
+  border-radius: 6px;
+}
+
+.eligibility-records-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.eligibility-records-title {
+  font-size: 14px;
   font-weight: 500;
-  text-align: center;  
-  display: block;      
-} */
-
-
-/* Icons */
-.icon-large {
-  width: 2rem; /* w-8 */
-  height: 2rem; /* h-8 */
+  color: #2f855a;
+  margin-left: 8px;
 }
 
-.icon-small {
-  width: 1.25rem; /* w-5 */
-  height: 1.25rem; /* h-5 */
+.eligibility-record-item {
+  font-size: 14px;
+  color: #2f855a;
+  margin-bottom: 4px;
 }
 
-.icon-status {
-  width: 2rem;
-  height: 2rem;
+.selected-doctor-display {
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: #ebf8ff;
+  border: 1px solid #90cdf4;
+  border-radius: 6px;
 }
 
-.icon-green {
-  color: #22c55e; /* green-500 */
+.selected-doctor-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
-.icon-red {
-  color: #ef4444; /* red-500 */
+.selected-doctor-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c5282;
+  margin-left: 8px;
 }
 
-.icon-blue {
-  color: #3b82f6; /* blue-500 */
+.selected-doctor-details {
+  font-size: 14px;
+  color: #2c5282;
 }
 
-.icon-spin {
+.doctor-name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.doctor-specializations {
+  margin-bottom: 4px;
+}
+
+.insurance-form-group {
+  margin-bottom: 16px;
+}
+
+.insurance-form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.insurance-plan-select {
+  width: 55%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.insurance-plan-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.insurance-plan-select:disabled {
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.check-eligibility-btn {
+  width: 25%;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.check-eligibility-btn.enabled {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.check-eligibility-btn.enabled:hover {
+  background-color: #2563eb;
+}
+
+.check-eligibility-btn.disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.eligibility-loading {
+  margin-right: 8px;
   animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  100% { transform: rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* Form */
-.checker-form {
-  padding: 2rem;
-}
-
-.input-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .input-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.input-label {
-  display: block;
-  font-weight: 600;
-  color: #000000; /* gray-700 */
-  margin-bottom: 0.75rem;
-  font-size: bold; /* text-sm */
-
-}
-
-.input-field {
-  width: 75%;
-  padding: 0.75rem 1rem;
-  border: 2px solid #e5e7eb; /* gray-200 */
-  border-radius: 0.5rem;
-  color: #1f2937; /* gray-800 */
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  font-size: 1rem;
-}
-
-.input-field:focus {
-  outline: none;
-  border-color: #3b82f6; /* blue-500 */
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-}
-
-/* Buttons */
-.button-group {
-  display: flex;
-  gap: 1rem;
-}
-
-.btn-primary {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: linear-gradient(to right, #ffffff, #ffffff);
-  color: rgb(0, 0, 0) !important;
-  padding: 0.75rem 2rem;
-  border-radius: 0.5rem;
- 
-  cursor: pointer;
-  border: 2px solid black !important;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
-  font-weight: bold;
-
-}
-
-.btn-primary:hover:not(:disabled) {
-  background: #FFA500;
-  box-shadow: 0 12px 20px rgba(141, 119, 92, 0.6);
-}
-
-.btn-primary:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-.btn-secondary {
-  padding: 0.75rem 1.5rem;
-  border: 2px solid #d1d5db; /* gray-300 */
-  color: #4b5563; /* gray-700 */
-  border-radius: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.btn-secondary:hover {
-  background-color: #f3f4f6; /* gray-50 */
-}
-
-/* Error message */
+/* Center error message with icon and text */
 .error-message {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  background-color: #fef2f2; /* red-50 */
-  border-left: 4px solid #f87171; /* red-400 */
-  border-radius: 0.5rem;
-  color: #b91c1c; /* red-700 */
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;    /* <----- Center the whole error box */
 }
 
-.error-icon-text {
+.error-message-content {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;    /* <----- Center icon + text horizontally */
+  width: 100%;
 }
 
 .error-text {
-  font-weight: 600;
+  font-size: 14px;
+  color: #dc2626;
+  margin-left: 8px;
+  text-align: center;         /* <----- Center text */
 }
 
-/* Result card */
-.result-card {
-  margin-top: 2rem;
-  background: linear-gradient(to right, #ffffff, #ffffff); /* green-50 to emerald-50 */
-  border: 2px solid #bbf7d0; /* green-200 */
-  border-radius: 1rem;
-  padding: 1.5rem 2rem;
+.eligibility-result {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid;
 }
 
-/* Result Header */
-.result-header {
+.eligibility-result.eligible {
+  background-color: #f0fff4;
+  border-color: #9ae6b4;
+}
+
+.eligibility-result.not-eligible {
+  background-color: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.eligibility-result-content {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
+  align-items: flex-start;
 }
 
-.status-icon-text {
+.eligibility-result-icon {
+  margin-right: 12px;
+  margin-top: 2px;
+}
+
+.eligibility-status-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.eligibility-status-title.eligible {
+  color: #065f46;
+}
+
+.eligibility-status-title.not-eligible {
+  color: #dc2626;
+}
+
+.eligibility-status-message {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.eligibility-status-message.eligible {
+  color: #047857;
+}
+
+.eligibility-status-message.not-eligible {
+  color: #dc2626;
+}
+
+.coverage-details {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #047857;
+}
+
+.coverage-details-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.coverage-details-item {
+  margin-bottom: 2px;
+}
+
+.ineligibility-reason {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #b91c1c;
+}
+
+.no-doctor-selected {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: #e8aeae;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.no-doctor-content {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;       /* <----- Center icon + text horizontally */
 }
 
-.patient-name {
-  font-size: 1.5rem; /* 2xl */
-  font-weight: 700;
-  color: #1f2937; /* gray-800 */
-  margin: 0;
+.no-doctor-text {
+  font-size: 14px;
+  color: #6b7280;
+  margin-left: 8px;
+  text-align: center;            /* <----- Center text */
 }
 
-.eligibility-msg {
-  font-size: 1.125rem; /* lg */
-  color: #16a34a; /* green-600 */
-  font-weight: 600;
-  margin: 0;
+.help-text {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.4;
 }
 
-.status-badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-weight: 700;
-  font-size: 0.875rem; /* text-sm */
+.help-text-note {
+  display: block;
+  margin-top: 4px;
+  font-weight: 500;
 }
 
-.status-verified {
-  background-color: #d1fae5; /* green-100 */
-  color: #166534; /* green-800 */
-}
-
-.status-other {
-  background-color: #fee2e2; /* red-100 */
-  color: #991b1b; /* red-800 */
-}
-
-/* Details */
-.details-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .details-grid {
-    grid-template-columns: repeat(2, 1fr);
+/* Responsive Design */
+@media (max-width: 768px) {
+  .insurance-eligibility-container {
+    padding: 16px;
+    margin-bottom: 16px;
   }
-}
-
-.details-card {
-  background: white;
-  border-radius: 0.5rem;
-  padding: 1.25rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.details-title {
-  font-weight: 600;
-  color: #1e40af; /* blue-800 */
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.details-content p {
-  color: #374151; /* gray-700 */
-  margin: 0.25rem 0;
-}
-
-.field-label {
-  font-weight: 600;
-}
-
-/* Coverage status */
-.coverage-status {
-  display: inline-block;
-  margin-left: 0.5rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.covered {
-  background-color: #dcfce7; /* green-100 */
-  color: #166534; /* green-800 */
-}
-
-.not-covered {
-  background-color: #fef3c7; /* yellow-100 */
-  color: #92400e; /* yellow-800 */
-}
-
-/* Benefit details */
-.benefits-text {
-  background-color: #eff6ff; /* blue-50 */
-  border-left: 4px solid #60a5fa; /* blue-400 */
-  padding: 1rem;
-  color: #374151; /* gray-700 */
-  border-radius: 0 0.5rem 0.5rem 0.5rem;
-  line-height: 1.5;
-}
-
-/* Booking status */
-.booking-status {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  background-color: #dcfce7; /* green-100 */
-  border-left: 4px solid #22c55e; /* green-500 */
-  border-radius: 0.5rem;
-}
-
-.booking-text {
-  display: flex;
-  align-items: center;
-}
-
-.booking-msg {
-  color: #166534;
-  font-weight: 600;
-  margin: 0;
-}
-
-.mr-3 {
-  margin-right: 0.75rem;
+  
+  .insurance-title {
+    font-size: 16px;
+  }
+  
+  .eligibility-result {
+    padding: 12px;
+  }
+  
+  .eligibility-result-content {
+    flex-direction: column;
+  }
+  
+  .eligibility-result-icon {
+    margin-right: 0;
+    margin-bottom: 8px;
+    align-self: flex-start;
+  }
 }
